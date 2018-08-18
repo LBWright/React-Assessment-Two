@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addTodo, completeTodo, removeCompleted } from '../../actions';
 import PropTypes from 'prop-types';
 
 class Todos extends Component {
@@ -10,30 +12,20 @@ class Todos extends Component {
   };
 
   addTodo = todo => {
-    this.setState(({ todos }) => ({
-      todos: todos.concat(todo)
-    }));
+    this.props.addTodo(todo);
   };
 
   completeTodo = id => {
-    let todos = this.state.todos.slice();
-    todos = todos.map(todo => {
-      if (todo.id === id) {
-        return { ...todo, completed: true };
-      } else return todo;
-    });
-    this.setState({ todos });
+    this.props.completeTodo(id);
   };
 
   removeCompleted = () => {
-    let todos = this.state.todos.slice();
-    todos = todos.filter(todo => !todo.completed);
-    this.setState({ todos });
+    this.props.removeCompleted();
   };
 
   render() {
     const todos = {
-      todos: this.state.todos,
+      todos: this.props.todos,
       addTodo: this.addTodo,
       completeTodo: this.completeTodo,
       removeCompleted: this.removeCompleted
@@ -43,4 +35,11 @@ class Todos extends Component {
   }
 }
 
-export default Todos;
+const mapStateToProps = state => ({
+  todos: state.todos
+});
+
+export default connect(
+  mapStateToProps,
+  { addTodo, completeTodo, removeCompleted }
+)(Todos);
