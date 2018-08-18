@@ -7,10 +7,6 @@ class Todos extends Component {
   static propTypes = {
     children: PropTypes.func.isRequired
   };
-  state = {
-    todos: []
-  };
-
   addTodo = todo => {
     this.props.addTodo(todo);
   };
