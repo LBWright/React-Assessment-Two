@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const TodoListItem = ({ id, title, completed, completeTodo }) => {
@@ -16,6 +16,13 @@ const TodoListItem = ({ id, title, completed, completeTodo }) => {
       </Button>
     </ListWrapper>
   );
+};
+
+TodoListItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  completed: PropTypes.bool.isRequired,
+  completeTodo: PropTypes.func.isRequired
 };
 
 export default TodoListItem;

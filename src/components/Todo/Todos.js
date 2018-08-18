@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 
 class Todos extends Component {
   static propTypes = {
-    children: PropTypes.func.isRequired
+    children: PropTypes.func.isRequired,
+    addTodo: PropTypes.func.isRequired,
+    completeTodo: PropTypes.func.isRequired,
+    removeCompleted: PropTypes.func.isRequired,
+    todos: PropTypes.array.isRequired
   };
   addTodo = todo => {
     this.props.addTodo(todo);
